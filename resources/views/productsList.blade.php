@@ -1,3 +1,6 @@
+@extends('layouts.app')
+@section('content')
+
 <div style="width:70%; display:flex; flex-direction: column; align-items: center; justify-content: center;  height: 100vh;">
 <form action="{{route('xyz')}}" method="post">
         @csrf
@@ -34,4 +37,4 @@
     <hr>
 
 </div>
-
+@endsection

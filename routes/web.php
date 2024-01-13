@@ -17,6 +17,11 @@ use App\Http\Controllers\tuwaiq;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/add-items', function () {
+    return view('create-product');
+});
+Route::post('/save-items', [tuwaiq::class,'saveProduct'])->name('save-items');
+
 
 Route::get('/ramia',[tuwaiq::class,'getRamia']);
 Route::get('/products',[tuwaiq::class,'getProducts']);
@@ -28,3 +33,7 @@ Route::get('/get-result/{degree}', [tuwaiq::class, 'getResult']);
 
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

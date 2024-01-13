@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class tuwaiq extends Controller
 {
@@ -89,5 +89,19 @@ class tuwaiq extends Controller
     public function getResult($degree){
         $result = $degree >= 50 ? 'pass' : 'fail';
         return($result);
+    }
+
+    public function saveProduct(Request $request){
+        if(!Product::where('product_name',$request->product_name)->exists()){
+        $product = Product::Create([
+            'product_name'=>$request->product_name,
+            'price'=>$request->price,
+
+        ]);
+        $product->save();
+    }
+    $getProduct = Product::ALL();
+    
+    return view('create-product',['products'=>$getProduct]);
     }
 }
